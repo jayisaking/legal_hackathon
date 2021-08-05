@@ -1,0 +1,99 @@
+﻿* {
+    box-sizing: border-box;
+    margin: 0%;
+    padding: 0%;
+}
+
+button {
+    background-color: white;
+}
+
+body {
+    width: 100%;
+    opacity: 1;
+    border: 1px solid #ddd;
+    font-family: 'Noto Sans TC', sans-serif;
+}
+
+.display {
+    border: 1px solid black;
+    margin-bottom: 20px;
+    width: 97%;
+}
+
+.searchbox {
+    width: 55%;
+    height: 35px;
+    font-size: 16px;
+    font-family: 'Noto Sans TC', sans-serif;
+    margin-left: 25px;
+    float: left;
+    border-radius: 5px;
+    border: 2px solid #bbb;
+    padding-left: 8px;
+}
+
+.searchbottom {
+    height: 35px;
+    font-size: 18px;
+    font-family: 'Noto Sans TC', sans-serif;
+    width: 25%;
+    margin-left: 5px;
+    border-radius: 8px;
+    border: 2px solid #bbb;
+}
+
+.searcharrow {
+    border-radius: 5px;
+    float: left;
+    width: 10%;
+    height: 35px;
+    margin-left: 5px;
+    float: left;
+    border: 2px solid #bbb;
+}
+
+.search {
+    width: 97%;
+    padding-left: 3px;
+    padding-top: 10px;
+    margin-bottom: 10px;
+    height: 60px;
+    position: fixed;
+    background-color: white;
+    border: 1px solid black;
+}
+
+button:active {
+    border: 2px solid black;
+}
+
+.display_judgement {
+    display: none;
+    width: 99%;
+    height: 500px;
+    overflow: auto;
+    text-align: center;
+}
+
+.temp {
+    margin-top: 70px;
+}
+
+.advanced_search {
+    width: 97%;
+    padding-top: 10px;
+    padding-left: 25px;
+    position: fixed;
+    top: 61px;
+    height: 50px;
+    display: none;
+    background-color: white;
+    border: 1px solid black;
+}
+
+.adse {
+    width: 60px;
+    padding-left: 3px;
+    height: 25px;
+}

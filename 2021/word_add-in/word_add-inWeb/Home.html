@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <title>Word</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js" type="text/javascript"></script>
+    <script src="Home.js" type="text/javascript"></script>
+    <link href="Home.css" rel="stylesheet" type="text/css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300&display=swap" rel="stylesheet">
+    <style>
+        .popup {
+            display: none;
+            position: fixed;
+            font-size: 15px;
+            text-align: center;
+            width: 60%;
+            margin-left: 20%;
+            min-height: 10vh;
+            top: 60vh;
+            border: 1px black solid;
+            padding-top: 15px;
+            background-color: white;
+        }
+    </style>
+    <script>
+        $(function () {
+            $(".searchbottom").click(function (event) {
+                try {
+                    get_selected_paragraph()
+                }
+                catch (err) {
+                    pop_up_windows_for_debug(err.name + ' : ' + err.message);
+                }
+                //pop_up_windows_for_debug('getting result..')
+            });
+            $(".searcharrow").bind("click", function (event) {
+                var selector = '.advanced_search';
+                if ($(selector).css('display') == 'block') {
+                    $(selector).css('display', 'none');
+                    $('.temp').css('margin-top', '70px');
+                } else {
+                    $(selector).css('display', 'block');
+                    $('.temp').css('margin-top', '115px');
+                }
+            });
+            $('.searchbox').keypress(function (event) {
+                if (event.which == 13) {
+                    $('.searchbottom').trigger('click')
+                }
+            });
+            //    $('.searchbottom').click(get_selected_paragraph);
+            $('.adse').keypress(function (event) {
+                if (event.which === 13) {
+                    $('.searchbottom').trigger('click')
+                }
+            });
+            //pop_up_windows_for_debug('hi')
+        })
+    </script>
+</head>
+
+<body>
+    <div class="search">
+        <input type="text" class="searchbox">
+        <button class="searcharrow">更多</button>
+        <button class="searchbottom">搜尋</button>
+
+    </div>
+    <div class="advanced_search">
+        <input type="text" id='year' class="adse">&nbsp;&nbsp;年度&nbsp;&nbsp;
+        <input type="text" name="" id='word' class="adse">&nbsp;&nbsp;字&nbsp;&nbsp;
+        第&nbsp;&nbsp;<input type="text" id='number' class="adse">&nbsp;&nbsp;號
+    </div>
+    <div class="temp"></div> &nbsp;
+    <div class="popup"></div>
+</body>
+
+</html>
