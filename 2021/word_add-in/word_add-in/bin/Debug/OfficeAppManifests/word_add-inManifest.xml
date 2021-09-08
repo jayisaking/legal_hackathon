@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--Created:ce44715c-8c4e-446b-879c-ea9ebe0f09c8-->
+<OfficeApp 
+          xmlns="http://schemas.microsoft.com/office/appforoffice/1.1" 
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+          xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0" 
+          xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides"
+          xsi:type="TaskPaneApp">
+
+  <!-- 開始基本設定: 增益集中繼資料，用於所有 Office 的版本 (除非提供覆寫)。 -->
+
+  <!-- 重要! 增益集識別碼必須為唯一，如果重複使用此資訊清單，請務必將此識別碼變更為新的 GUID。 -->
+  <Id>21cbb7f1-ebaa-428b-8f65-e7770d5b8237</Id>
+
+  <!--版本。只有在版本變更時才會觸發來自市集的更新。 -->
+  <Version>1.0.0.0</Version>
+  <ProviderName>[提供者名稱]</ProviderName>
+  <DefaultLocale>en-US</DefaultLocale>
+  <!-- 增益集的顯示名稱。用於市集及 Office UI 上的多個位置 (例如增益集對話方塊)。 -->
+  <DisplayName DefaultValue="word_add-in" />
+  <Description DefaultValue="word_add-in"/>
+  <!-- 增益集的圖示。用於安裝畫面和增益集對話方塊。 -->
+  <IconUrl DefaultValue="https://localhost:44384/Images/Button32x32.png" />
+
+  <SupportUrl DefaultValue="http://www.contoso.com" />
+  <!-- 允許瀏覽的網域。例如，如果使用 ShowTaskpane 後有 href 連結，只有網域在此清單時才允許瀏覽。 -->
+  <AppDomains>
+    <AppDomain>AppDomain1</AppDomain>
+    <AppDomain>AppDomain2</AppDomain>
+    <AppDomain>AppDomain3</AppDomain>
+  </AppDomains>
+  <!--結束基本設定。 -->
+  
+  <!--開始 TaskPane 模式整合。若不具 VersionOverrides，或 Office 用戶端版本不支援增益集命令，則會使用此區段。 -->
+  <Hosts>
+    <Host Name="Document" />
+  </Hosts>
+  <DefaultSettings>
+    <SourceLocation DefaultValue="https://localhost:44384/Home.html" />
+  </DefaultSettings>
+  <!-- 結束 TaskPane 模式整合。  -->
+
+  <Permissions>ReadWriteDocument</Permissions>
+
+  <!-- 開始增益集命令模式整合。 -->
+  <VersionOverrides xmlns="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="VersionOverridesV1_0">
+    
+    <!-- 主機節點為必要項。 -->
+    <Hosts>
+      <!-- 每部主機皆可以有一組不同的命令。 -->
+      <!-- Excel 的主體為活頁簿，Word 的主體為文件，PowerPoint 的主體為簡報。 -->
+      <!-- 確定您覆寫的主機符合在資訊清單的上方區段中宣告的主機。 -->
+      <Host xsi:type="Document">
+        <!-- 表單係數。目前僅支援 DesktopFormFactor。 -->
+        <DesktopFormFactor>
+          <!--「在個別安裝時成功載入增益集後，此程式碼能使可自訂的訊息顯示出來。」-->
+          <GetStarted>
+            <!-- 「使用者入門」圖說文字的標題。ResID 屬性指向 ShortString 資源 -->
+            <Title resid="Contoso.GetStarted.Title"/>
+
+            <!-- 「開始使用」圖說文字的描述。ResID 指向 LongString 資源 -->
+            <Description resid="Contoso.GetStarted.Description"/>
+
+            <!-- 指向 URL 資源，其詳細說明使用增益集的方式。 -->
+            <LearnMoreUrl resid="Contoso.GetStarted.LearnMoreUrl"/>
+          </GetStarted>
+          <!-- 函式檔案是包含 JavaScript 的 HTML 網頁，ExecuteAction 的函式將會從中呼叫。             將 FunctionFile 想成 ExecuteFunction 後的程式碼。 -->
+          <FunctionFile resid="Contoso.DesktopFunctionFile.Url" />
+
+          <!-- PrimaryCommandSurface 為主要 Office 功能區。 -->
+          <ExtensionPoint xsi:type="PrimaryCommandSurface">
+            <!-- 使用 OfficeTab 可擴充現有的索引標籤。使用 CustomTab 可建立新的索引標籤。 -->
+            <OfficeTab id="TabHome">
+              <!-- 請確定您提供群組的唯一識別碼。建議使用您公司名稱的任何命名空間識別碼。 -->
+              <Group id="Contoso.Group1">
+                <!-- 您的群組標籤。resid 必須指向 ShortString 資源。 -->
+                <Label resid="Contoso.Group1Label" />
+                <!-- 圖示。所需大小為 16、32、80，選用大小為 20、24、40、48、64。強烈建議提供所有大小以取得最佳 UX。 -->
+                <!-- 使用 PNG 圖示。資源區段上的所有 URL 都必須使用 HTTPS。 -->
+                <Icon>
+                  <bt:Image size="16" resid="Contoso.tpicon_16x16" />
+                  <bt:Image size="32" resid="Contoso.tpicon_32x32" />
+                  <bt:Image size="80" resid="Contoso.tpicon_80x80" />
+                </Icon>
+
+                <!-- 控制項。可以是 [按鈕] 或 [功能表] 類型。 -->
+                <Control xsi:type="Button" id="Contoso.TaskpaneButton">
+                  <Label resid="Contoso.TaskpaneButton.Label" />
+                  <Supertip>
+                    <!-- 工具提示標題。resid 必須指向 ShortString 資源。 -->
+                    <Title resid="Contoso.TaskpaneButton.Label" />
+                    <!-- 工具提示描述。resid 必須指向 LongString 資源。 -->
+                    <Description resid="Contoso.TaskpaneButton.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Contoso.tpicon_16x16" />
+                    <bt:Image size="32" resid="Contoso.tpicon_32x32" />
+                    <bt:Image size="80" resid="Contoso.tpicon_80x80" />
+                  </Icon>
+
+                  <!-- 這是觸發命令 (例如按一下功能區) 時所發生的情況。支援的動作為 ExecuteFunction 或 ShowTaskpane。 -->
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>ButtonId1</TaskpaneId>
+                    <!-- 為將在工作窗格上顯示的位置提供 URL 資源識別碼。 -->
+                    <SourceLocation resid="Contoso.Taskpane.Url" />
+                  </Action>
+                </Control>
+              </Group>
+            </OfficeTab>
+          </ExtensionPoint>
+        </DesktopFormFactor>
+      </Host>
+    </Hosts>
+    
+    <!-- 您可以跨主機和表單係數使用資源。 -->
+    <Resources>
+      <bt:Images>
+        <bt:Image id="Contoso.tpicon_16x16" DefaultValue="https://localhost:44384/Images/Button16x16.png" />
+        <bt:Image id="Contoso.tpicon_32x32" DefaultValue="https://localhost:44384/Images/Button32x32.png" />
+        <bt:Image id="Contoso.tpicon_80x80" DefaultValue="https://localhost:44384/Images/Button80x80.png" />
+      </bt:Images>
+      <bt:Urls>
+        <bt:Url id="Contoso.DesktopFunctionFile.Url" DefaultValue="https://localhost:44384/Functions/FunctionFile.html" />
+        <bt:Url id="Contoso.Taskpane.Url" DefaultValue="https://localhost:44384/Home.html" />
+        <bt:Url id="Contoso.GetStarted.LearnMoreUrl" DefaultValue="https://go.microsoft.com/fwlink/?LinkId=276812" />
+      </bt:Urls>
+      <!-- ShortStrings 字元數上限==125。 -->
+      <bt:ShortStrings>
+        <bt:String id="Contoso.TaskpaneButton.Label" DefaultValue="Show Taskpane" />
+        <bt:String id="Contoso.Group1Label" DefaultValue="Commands Group" />
+        <bt:String id="Contoso.GetStarted.Title" DefaultValue="Get started with your sample add-in!" />
+      </bt:ShortStrings>
+      <!-- LongStrings 字元數上限==250。 -->
+      <bt:LongStrings>
+        <bt:String id="Contoso.TaskpaneButton.Tooltip" DefaultValue="Click to Show a Taskpane" />
+        <bt:String id="Contoso.GetStarted.Description" DefaultValue="Your sample add-in loaded succesfully. Go to the HOME tab and click the 'Show Taskpane' button to get started." />
+      </bt:LongStrings>
+    </Resources>
+  </VersionOverrides>
+  <!-- 結束增益集命令模式整合。 -->
+
+</OfficeApp>

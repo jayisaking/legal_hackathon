@@ -8,7 +8,7 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{D6349D6A-E57C-413C-812C-F83E1D4FC8A6}</ProjectGuid>
+    <ProjectGuid>{CC4D9784-A895-42A8-BD1F-C37FD531EC50}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -17,7 +17,7 @@
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>44388</IISExpressSSLPort>
+    <IISExpressSSLPort>44384</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -25,7 +25,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <TargetOfficeVersion>15.0</TargetOfficeVersion>
-    <TypeScriptToolsVersion>4.2</TypeScriptToolsVersion>
+    <TypeScriptToolsVersion>4.3</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -380,30 +380,18 @@
     <Content Include="Scripts\Office\1\outlook-15.04.js" />
     <Content Include="Scripts\Office\1\outlook-15.debug.js" />
     <Content Include="Scripts\Office\1\outlook-15.js" />
-    <Content Include="Scripts\Office\1\outlook-android-16.00.alpha.debug.js" />
-    <Content Include="Scripts\Office\1\outlook-android-16.00.alpha.js" />
     <Content Include="Scripts\Office\1\outlook-android-16.00.debug.js" />
     <Content Include="Scripts\Office\1\outlook-android-16.00.js" />
-    <Content Include="Scripts\Office\1\outlook-ios-16.00.alpha.debug.js" />
-    <Content Include="Scripts\Office\1\outlook-ios-16.00.alpha.js" />
     <Content Include="Scripts\Office\1\outlook-ios-16.00.debug.js" />
     <Content Include="Scripts\Office\1\outlook-ios-16.00.js" />
-    <Content Include="Scripts\Office\1\outlook-mac-16.00.alpha.debug.js" />
-    <Content Include="Scripts\Office\1\outlook-mac-16.00.alpha.js" />
     <Content Include="Scripts\Office\1\outlook-mac-16.00.debug.js" />
     <Content Include="Scripts\Office\1\outlook-mac-16.00.js" />
-    <Content Include="Scripts\Office\1\outlook-web-16.00.debug.js" />
-    <Content Include="Scripts\Office\1\outlook-web-16.00.js" />
-    <Content Include="Scripts\Office\1\outlook-web-16.01.alpha.debug.js" />
-    <Content Include="Scripts\Office\1\outlook-web-16.01.alpha.js" />
     <Content Include="Scripts\Office\1\outlook-web-16.01.debug.js" />
     <Content Include="Scripts\Office\1\outlook-web-16.01.js" />
     <Content Include="Scripts\Office\1\outlook-win32-16.00.debug.js" />
     <Content Include="Scripts\Office\1\outlook-win32-16.00.js" />
     <Content Include="Scripts\Office\1\outlook-win32-16.01.debug.js" />
     <Content Include="Scripts\Office\1\outlook-win32-16.01.js" />
-    <Content Include="Scripts\Office\1\outlook-win32-16.02.alpha.debug.js" />
-    <Content Include="Scripts\Office\1\outlook-win32-16.02.alpha.js" />
     <Content Include="Scripts\Office\1\outlook-win32-16.02.debug.js" />
     <Content Include="Scripts\Office\1\outlook-win32-16.02.js" />
     <Content Include="Scripts\Office\1\outlookwebapp-15.01.debug.js" />
@@ -452,6 +440,18 @@
     <Content Include="Scripts\Office\1\pt-pt\office_strings.js" />
     <Content Include="Scripts\Office\1\pt-pt\outlook_strings.debug.js" />
     <Content Include="Scripts\Office\1\pt-pt\outlook_strings.js" />
+    <Content Include="Scripts\Office\1\qps-ploca\office_strings.debug.js" />
+    <Content Include="Scripts\Office\1\qps-ploca\office_strings.js" />
+    <Content Include="Scripts\Office\1\qps-ploca\outlook_strings.debug.js" />
+    <Content Include="Scripts\Office\1\qps-ploca\outlook_strings.js" />
+    <Content Include="Scripts\Office\1\qps-plocm\office_strings.debug.js" />
+    <Content Include="Scripts\Office\1\qps-plocm\office_strings.js" />
+    <Content Include="Scripts\Office\1\qps-plocm\outlook_strings.debug.js" />
+    <Content Include="Scripts\Office\1\qps-plocm\outlook_strings.js" />
+    <Content Include="Scripts\Office\1\qps-ploc\office_strings.debug.js" />
+    <Content Include="Scripts\Office\1\qps-ploc\office_strings.js" />
+    <Content Include="Scripts\Office\1\qps-ploc\outlook_strings.debug.js" />
+    <Content Include="Scripts\Office\1\qps-ploc\outlook_strings.js" />
     <Content Include="Scripts\Office\1\ro-ro\office_strings.debug.js" />
     <Content Include="Scripts\Office\1\ro-ro\office_strings.js" />
     <Content Include="Scripts\Office\1\ro-ro\outlook_strings.debug.js" />
@@ -531,6 +531,8 @@
     <Content Include="Scripts\Office\1\visio-web-embedded.js" />
     <Content Include="Scripts\Office\1\visio-win32-16.00.debug.js" />
     <Content Include="Scripts\Office\1\visio-win32-16.00.js" />
+    <Content Include="Scripts\Office\1\webauth\webauth.browserauth.debug.js" />
+    <Content Include="Scripts\Office\1\webauth\webauth.browserauth.js" />
     <Content Include="Scripts\Office\1\webauth\webauth.implicit.debug.js" />
     <Content Include="Scripts\Office\1\webauth\webauth.implicit.js" />
     <Content Include="Scripts\Office\1\word-15.01.debug.js" />
@@ -596,9 +598,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>62436</DevelopmentServerPort>
+          <DevelopmentServerPort>65457</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:62436/</IISUrl>
+          <IISUrl>http://localhost:65457/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

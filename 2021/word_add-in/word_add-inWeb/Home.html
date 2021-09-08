@@ -3,49 +3,62 @@
 
 <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>Word</title>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.js"></script>
     <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js" type="text/javascript"></script>
-    <script src="Home.js" type="text/javascript"></script>
     <link href="Home.css" rel="stylesheet" type="text/css" />
+    <link href="sidebar.css" rel="stylesheet" type="text/css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300&display=swap" rel="stylesheet">
-    <style>
-        .popup {
-            display: none;
-            position: fixed;
-            font-size: 15px;
-            text-align: center;
-            width: 60%;
-            margin-left: 20%;
-            min-height: 10vh;
-            top: 60vh;
-            border: 1px black solid;
-            padding-top: 15px;
-            background-color: white;
-        }
-    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4"></script>
+    <script src="https://kit.fontawesome.com/45789eaa0e.js" crossorigin="anonymous"></script>
+    <script src="draw_chart.js" type="text/javascript"></script>
+    <script src="Home.js" type="text/javascript"></script>
     <script>
         $(function () {
+            let form_data = {}
+            const file_input = document.getElementById('file_input')
+            //location.reload();
+            //display_bar(['一年四月','三月','一月','七月'],[1,4,6,35])
+            // console.log(typeof Chart) 
+            $('.searchbox').blur(function (event) {
+                $('.searchbox').attr({
+                    'placeholder': '請輸入關鍵字   不同關鍵字以空格分開'
+                });
+            })
+            $('.searchbox').focus(function (event) {
+                $('.searchbox').attr('placeholder', '');
+            })
             $(".searchbottom").click(function (event) {
                 try {
+
                     get_selected_paragraph()
-                }
-                catch (err) {
+                } catch (err) {
                     pop_up_windows_for_debug(err.name + ' : ' + err.message);
                 }
                 //pop_up_windows_for_debug('getting result..')
             });
-            $(".searcharrow").bind("click", function (event) {
+            $(".searcharrow").bind("click", function () {
                 var selector = '.advanced_search';
                 if ($(selector).css('display') == 'block') {
-                    $(selector).css('display', 'none');
-                    $('.temp').css('margin-top', '70px');
+
+                    //$(selector).css('display', 'none');
+                    $(selector).slideUp(500)
+                    // $('.temp').css('margin-top', '385px');
+                    $('.temp').removeClass('temp_slidedown');
+                    //$('.chart_container').css('top', '105px');
+                    $('.chart_container').removeClass('chart_container_slide');
                 } else {
-                    $(selector).css('display', 'block');
-                    $('.temp').css('margin-top', '115px');
+                    //$(selector).css('display', 'block');
+                    $(selector).slideDown(500)
+                    $('.temp').addClass('temp_slidedown');
+                    //$('.temp').css('margin-top', '485px');
+                    $('.chart_container').addClass('chart_container_slide');
+                    //$('.chart_container').css('top', '200px');
                 }
             });
             $('.searchbox').keypress(function (event) {
@@ -59,24 +72,150 @@
                     $('.searchbottom').trigger('click')
                 }
             });
+            $('.ulbutton .fas').click(function () {
+
+            })
             //pop_up_windows_for_debug('hi')
+            $('.buttonf_uni').click(function () {
+                $('.buttonul').removeClass('active')
+                $('.upload_iw .fa-check').removeClass('active')
+                $('.upload').click()
+            })
+            $('.upload').change(function () {
+                console.log('.upload has been changed i.e. file might have been uploaded')
+                if (file_input.value) {
+                    $('.labelb').html(file_input.files[0].name)
+                    console.log(file_input.files[0].name)
+                } else {
+                    if ($('.labelb').html() == '') {
+                        $('.labelb').html('請重新上傳')
+                    }
+                }
+            })
+            $('.ulbutton').click(function () {
+                $('.uploadwindow_wpr').addClass('active')
+                $('.layout').addClass('active')
+            })
+
+            $('.upload_iw .fas').click(function () {
+                $('.uploadwindow_wpr').removeClass('active')
+                $('.layout').removeClass('active')
+            })
+            $('.buttonul').click(function () {
+                if ($('.labelb').html().trim() !== '' && $('.labelb').html().trim() !== '請重新上傳' && $(
+                        '.labelb').html().trim() !== '請上傳資料' && $('.labelb').text().trim() !== '') {
+                    console.log("上傳資料：" + "'" + $('.labelb').text() + "'")
+                    //send_file_name(file_input.files[0])
+                    try {
+                        form_data = new FormData()
+                        console.log(file_input.files[0])
+                        form_data.append('file', file_input.files[0])
+                        console.log(form_data)
+                        send_file(form_data)
+
+                    } catch (e) {
+                        console.log(e.message)
+                    }
+                } else {
+                    $('.labelb').html('請上傳資料')
+                }
+            })
         })
     </script>
 </head>
 
 <body>
-    <div class="search">
-        <input type="text" class="searchbox">
-        <button class="searcharrow">更多</button>
-        <button class="searchbottom">搜尋</button>
+    <header class="header">
+        <div class="container_of_header">
+            <div class="wrapper_of_header">
+                <div class="input_wpr">
+                    <div class="for_combination">
+                        <input type="text" class="searchbox" placeholder="請輸入關鍵字  不同關鍵字以空格分開">
+                        <div class="searchbottom">
+                            <i class="fas fa-search"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="more_wpr">
+                    <div class="searcharrow ">
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                </div>
+                <div class="ulbutton_wpr">
+                    <div class="ulbutton">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="advanced_search">
+                <div class="numbers">
+                    <input type="text" id='year' class="adse">&nbsp;&nbsp;年度&nbsp;&nbsp;
+                    <input type="text" name="" id='word' class="adse">&nbsp;&nbsp;字&nbsp;&nbsp;
+                    第&nbsp;&nbsp;<input type="text" id='number' class="adse">&nbsp;&nbsp;號
+                </div>
+                <div class="type">
+                    <input id="criminal_check" type="checkbox" class="check_for_type" />
+                    刑事&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input id="civic_check" type="checkbox" class="check_for_type" />
+                    民事&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input id="determine_check" type="checkbox" class="check_for_type" />
+                    判決&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input id="precedent_check" type="checkbox" class="check_for_type" />
+                    判例
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="uploadwindow_wpr">
+        <div class="uploadwindow">
+            <div class="upload_iw">
+                <i class="fas fa-times"></i>
+                <form action="http://127.0.0.1:5000/uploadfile" method="POST" class="uploadform"
+                    enctype="multipart/form-data">
+                    <input name='file' type="file" id="file_input" class="upload">
+                </form>
+                <button class="buttonf buttonf_uni">
+                    選擇檔案
+                </button>
+                <div class="labelb">
+                </div>
+                <button class="buttonf buttonul">
+                    上傳
+                </button>
+                <i class="fas fa-check"></i>
+            </div>
+        </div>
+    </div>
+    <div class="layout"></div>
+    <div class="chart_container">
+        <!-- <span class="label_x">月</span> -->
+        <div class="chart_wrapper">
+            <canvas id="chart"></canvas>
+        </div>
+    </div>
+    <div class="temp">
+    </div> &nbsp;
+    <div class="sidebar_container ">
+        <a href="" class="downloadfile" download></a>
+        <div class="element_wrapper">
 
+            <!-- <div class="sidebar_element " id='selement_1'>
+                民法第229.docx
+                <i class="fas fa-download"></i>
+                <div class="elementtext">
+                    
+                </div>
+            </div>
+            <div class="sidebar_element " id="selement_2">
+                判決書20110114.docx
+                <i class="fas fa-download"></i>
+                <div class="elementtext">
+                    
+                </div>
+                <div class="fileid"></div>
+            </div> -->
+        </div>
     </div>
-    <div class="advanced_search">
-        <input type="text" id='year' class="adse">&nbsp;&nbsp;年度&nbsp;&nbsp;
-        <input type="text" name="" id='word' class="adse">&nbsp;&nbsp;字&nbsp;&nbsp;
-        第&nbsp;&nbsp;<input type="text" id='number' class="adse">&nbsp;&nbsp;號
-    </div>
-    <div class="temp"></div> &nbsp;
     <div class="popup"></div>
 </body>
 

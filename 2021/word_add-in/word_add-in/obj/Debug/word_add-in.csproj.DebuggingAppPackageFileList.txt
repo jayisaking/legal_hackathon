@@ -1,0 +1,2 @@
+bin\Debug\OfficeAppManifests\word_add-inManifest.xml
+D:\legal_hackathon\2021\word_add-in\word_add-in\bin\Debug\word_add-in.debugapp

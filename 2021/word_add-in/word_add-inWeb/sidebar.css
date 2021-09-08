@@ -1,0 +1,84 @@
+.sidebar_container {
+    position: fixed;
+    min-height: 500px;
+    width: 20%;
+    top: 18%;
+    right: 4%;
+    width: 23%;
+}
+
+.element_wrapper {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sidebar_element:hover,
+.sidebar_element.active {
+    border: 1px solid rgba(255, 99, 132, 1);
+    padding-left: 3px;
+    padding-right: 3px;
+}
+
+.sidebar_element {
+    position: relative;
+    box-shadow: 0 2px 15px 1px #ccc;
+    border-radius: 8px;
+    padding-top: 5px;
+    padding-left: 4px;
+    padding-right: 4px;
+    font-size: 17px;
+    text-align: center;
+    margin-top: 8px;
+    width: 95%;
+    min-height: 60px;
+
+    cursor: pointer;
+    word-break: break-all;
+}
+
+.sidebar_element .fa-download {
+    font-size: 18px;
+    position: absolute;
+    bottom: 13%;
+    right: 10px;
+}
+
+.sidebar_element .fa-download:hover {
+    color: {"border-color": "#C1E0FF", 
+        "border-width":"1px", 
+        "border-style":"solid"};
+
+}
+
+.elementtext {
+    position: fixed;
+    border: 1px solid #7690da;
+    box-shadow: 0 2px 15px 1px #ccc;
+    width: 60%;
+    top: 19%;
+    right: 27%;
+    min-height: 100px;
+    max-height: 71%;
+    text-align: center;
+    padding: 10px;
+    display: none;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.elementtext.active {
+    display: block;
+    background-color: white;
+}
+
+.fileid {
+    display: none;
+}
+
+.downloadfile {
+    display: none;
+}
